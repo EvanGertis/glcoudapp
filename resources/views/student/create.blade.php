@@ -6,7 +6,18 @@
         <br/>
             <h2 class="center">Add Data</h2>
         <br/>
+        @if( count($errors) > 0)
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li class="alert alert-warning">{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
+        @if(\Session::has('success'))
+            <p class="alert alert-success">{{\Session::get('success')}}</p>
+        @endif
         <form action="{{url('student')}}" method="post">
+            {{csrf_field()}}
             <div class="form-group">
                 <input type="text" name="first_name" class="form-control" placeholder="Enter first name">
             </div>
